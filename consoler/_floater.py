@@ -35,7 +35,7 @@ class Floater:
         """
         while True:
             value = input(p_question + ' ')
-            if Floater.is_float(value) and float(value) > 0:
+            if Floater.is_float(value) and float(value) >= 0:
                 return float(value)
             else:
                 print("Please, enter a simple positive number...")
@@ -53,7 +53,7 @@ class Floater:
             if Floater.is_float(value) and float(value) >= p_min:
                 return float(value)
             else:
-                print("Please, enter a simple number higher than %d" % p_min)
+                print("Please, enter a simple number higher than %f" % p_min)
 
     @staticmethod
     def read_in_between(p_question, p_min, p_max):
@@ -69,7 +69,7 @@ class Floater:
             if Floater.is_float(value) and p_min <= float(value) <= p_max:
                 return float(value)
             else:
-                print("Please, enter a simple number between %d and %d " % (p_min, p_max))
+                print("Please, enter a simple number between %f and %f " % (p_min, p_max))
 
     @staticmethod
     def read_min_esc(p_question, p_min, p_esc):
@@ -79,15 +79,18 @@ class Floater:
         :param p_question:  the question to ask to the user
         :param p_min: the minimum value required
         :param p_esc: the escape value
-        :return:  the value of the input
+        :return:  the value of the input or the escape char in uppercase
         """
         while True:
             value = input(p_question + ' ')
-            if Floater.is_float(value) and (p_min <= float(value) or p_esc == float(value)):
+
+            if str(p_esc).lower() == str(value).lower():
+                return str(value).upper()
+            if Floater.is_float(value) and p_min <= float(value):
                 return float(value)
             else:
-                print("Please, enter a simple positive number higher than " + str(p_min) + ", press " + str(
-                    p_esc) + " to cancel")
+                print("Please, enter a positive float higher than %f , press %s to cancel"
+                      % (p_min, str(p_esc)))
 
     @staticmethod
     def read_min_max_esc(p_question, p_min, p_max, p_esc):
@@ -102,8 +105,11 @@ class Floater:
         """
         while True:
             value = input(p_question + ' ')
-            if Floater.is_float(value) and (p_min <= float(value) <= p_max or p_esc == float(value)):
+
+            if str(p_esc).lower() == str(value).lower():
+                return str(value).upper()
+            if Floater.is_float(value) and p_min <= float(value) <= p_max:
                 return float(value)
             else:
-                print("Please, enter a positive float between " + p_min + " and " + p_max +
-                      ", press " + p_esc + " to cancel")
+                print("Please, enter a positive float between %f and %f, press %s to cancel"
+                      % (p_min, p_max, str(p_esc)))

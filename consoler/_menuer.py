@@ -3,17 +3,6 @@
 # ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **
 
 
-class Colors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-
-
 class Menuer:
     @staticmethod
     def _format_validation_character(p_chars):
@@ -66,13 +55,14 @@ class Menuer:
             print("Please confirm by pressing (Y/N) then Enter")
 
     @staticmethod
-    def ReadMenu(p_menu):
+    def read_menu(p_menu):
         while True:
             choices = Menuer._analyze_menu(p_menu).upper()
 
-            choice = input("\n" +Colors.OKGREEN + p_menu).upper()
+            choice = input("\n" + p_menu).upper()
 
             if choice in choices:
                 return choice
             else:
-                print(Colors.FAIL + "\nPlease enter a valid option --> " + Menuer._format_validation_character(choices))
+                print("\nPlease enter a valid option --> %s"
+                      % Menuer._format_validation_character(choices))

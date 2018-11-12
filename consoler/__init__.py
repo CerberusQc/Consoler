@@ -7,3 +7,5 @@
 from consoler._inter import Inter
 from consoler._floater import Floater
 from consoler._menuer import Menuer
+from consoler._stringer import Stringer
+from consoler._dater import Dater
